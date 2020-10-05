@@ -1,12 +1,14 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-
+import { useRoute } from '@react-navigation/native'
+ 
 export default function Nav({ navigation }) {
+    const route = useRoute()
     return (
         <View style={styles.nav}>
             <TouchableOpacity onPress={() => navigation.navigate("Chars")}>
                 <View>
-                    <Text style={styles.text}>Characters</Text>
+                    <Text style={route.name == "Chars" ? styles.selectedText : styles.text } >Characters</Text>
                 </View>
             </TouchableOpacity>
 
@@ -14,7 +16,7 @@ export default function Nav({ navigation }) {
 
             <TouchableOpacity onPress={() => navigation.navigate("Location")}>
                 <View>
-                    <Text style={styles.text}>Locations</Text>
+                    <Text style={route.name == "Location" ? styles.selectedText : styles.text }>Locations</Text>
                 </View>
             </TouchableOpacity>
 
@@ -22,7 +24,7 @@ export default function Nav({ navigation }) {
             
             <TouchableOpacity onPress={() => navigation.navigate("Episodes")}>
                 <View>
-                    <Text style={styles.text}>Episodes</Text>
+                    <Text style={route.name == "Episodes" ? styles.selectedText : styles.text }>Episodes</Text>
                 </View>
             </TouchableOpacity>
         </View>
@@ -41,6 +43,9 @@ const styles = StyleSheet.create({
     },
     text: {
         color: "#f8f9fa"
+    },
+    selectedText: {
+        color: "#07bff4"
     },
     div: {
         backgroundColor: "#f8f9fa",

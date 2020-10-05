@@ -4,6 +4,8 @@ import Search from './Search'
 import CharsCard from './cards/charsCard'
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { gql, useQuery } from '@apollo/client'
+import Loading from './Loading'
+import Error from './Error'
 
 const GET_CHARS = gql`
 query characters($page: Int, $filter: FilterCharacter){
@@ -45,12 +47,12 @@ export default function Chars({ navigation }) {
     const renderContent = () => {
 
 
-        if (loading && !data) return (
-            <Text>Loading...</Text>
+        if (loading) return (
+            <Loading />
         )
 
         if (error && !data) return (
-            <Text>{error.message}</Text>
+            <Error error={error}/>
         )
 
         return (

@@ -4,6 +4,8 @@ import Search from './Search'
 import EpisodesCard from './cards/episodesCard'
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { gql, useQuery } from '@apollo/client'
+import Loading from './Loading'
+import Error from './Error'
 
 const GET_EPISODES = gql`
 query episodes($page: Int, $filter: FilterEpisode) {
@@ -51,11 +53,11 @@ export default function Episodes({ navigation }) {
 
 
         if (loading && !data) return (
-            <Text>Loading...</Text>
+            <Loading />
         )
 
         if (error && !data) return (
-            <Text>{error.message}</Text>
+            <Error error={error} />
         )
 
         return (

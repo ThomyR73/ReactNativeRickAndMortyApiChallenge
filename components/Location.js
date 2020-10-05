@@ -4,6 +4,8 @@ import Search from './Search'
 import LocationsCard from './cards/locationsCard'
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { gql, useQuery } from '@apollo/client'
+import Loading from './Loading'
+import Error from './Error'
 
 const GET_LOCATION = gql`
 query locations($page: Int, $filter: FilterLocation) {
@@ -52,11 +54,11 @@ export default function Location({ navigation }) {
 
 
         if (loading && !data) return (
-            <Text>Loading...</Text>
+            <Loading />
         )
 
         if (error && !data) return (
-            <Text>{error.message}</Text>
+            <Error error={error} />
         )
 
         return (
