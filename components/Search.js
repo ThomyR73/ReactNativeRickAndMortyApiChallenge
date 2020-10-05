@@ -36,10 +36,10 @@ export default function Search({ setFilter, search }) {
         <View style={styles.container}>
             <TextInput placeholder={`Search ${search}`} style={styles.search} onChangeText={text => startSearch(text)} value={name} />
             <View style={styles.buttons}>
-                <TouchableOpacity style={styles.searchButton}>
+                <TouchableOpacity style={styles.searchButton} onPress={onSubmit}>
                     <Text style={styles.text} >Search</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.deletoButton}>
+                <TouchableOpacity style={styles.deletoButton} onPress={onClear}>
                     <Text style={styles.text}>Delete</Text>
                 </TouchableOpacity>
             </View>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     },
     buttons: {
         flexDirection: "row",
-        width: "30%",
+        width: "33%",
         backgroundColor: "#343a40",
         height: 40,
         borderTopRightRadius: 5,
@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
         borderBottomEndRadius: 5
     },
     text: {
-        color: "#f8f9fa"
+        color: "#f8f9fa",
+        fontSize: 13
     }
 })

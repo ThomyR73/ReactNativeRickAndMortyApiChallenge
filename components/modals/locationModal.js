@@ -1,9 +1,9 @@
 import React from 'react'
-import { View, Text, StyleSheet, FlatList } from 'react-native'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import CharsCard from '../cards/charsCard'
 
 export default function CharsModal({ route, navigation }) {
-    const { name, dimension, type, characters } = route.params
+    const { name, dimension, type, characters, } = route.params
 
     const checkChars = () => {
         const { name } = characters[0]
@@ -14,7 +14,7 @@ export default function CharsModal({ route, navigation }) {
     }
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <Text style={styles.name}>
                 {name}
             </Text>
@@ -42,11 +42,8 @@ export default function CharsModal({ route, navigation }) {
                 {checkChars() ? (
 
                     <View style={styles.scroll}>
-                        <FlatList
-                            data={characters.slice(0, 5)}
-                            keyExtractor={(item) => item.id}
-                            renderItem={({ item }) => <CharsCard name={item.name} img={item.image} navigation={navigation} type={item.type} gender={item.gender} species={item.species} key={`#${item.id}`} />}
-                        />
+                        <Text style={styles.dataClass}>Residents</Text>
+                        {characters.slice(0, 5).map((char) => { return <CharsCard name={char.name} img={char.image} navigation={navigation} type={char.type} gender={char.gender} species={char.species} key={`#${char.id}`} /> })}
                     </View>
 
                 ) :
@@ -58,7 +55,7 @@ export default function CharsModal({ route, navigation }) {
 
 
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
@@ -66,23 +63,25 @@ const styles = StyleSheet.create({
     container: {
         width: "100%",
         height: "100%",
-        alignItems: "center",
-        marginTop: 15
+        paddingTop: 15
     },
     name: {
         fontSize: 30,
         marginTop: 0,
         width: "80%",
         textAlign: "center",
-        marginBottom: 15
-
+        marginBottom: 15,
+        alignSelf: "center"
     },
     dataContainer: {
         width: "80%",
-        alignItems: "flex-start"
+        alignItems: "flex-start",
+        alignSelf: "center"
     },
     dataLabel: {
-        flexDirection: "row"
+        flexDirection: "row",
+        width: "80%",
+        flexWrap: "wrap"
     },
     dataClass: {
         fontWeight: "bold",

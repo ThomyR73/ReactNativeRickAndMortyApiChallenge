@@ -54,7 +54,8 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "100%",
         alignItems: "center",
-        marginTop: 30
+        paddingTop: 30,
+        backgroundColor: "#f8f9fa"
     },
     img: {
         position: "relative",
@@ -71,10 +72,12 @@ const styles = StyleSheet.create({
     },
     dataContainer: {
         width: "80%",
-        alignItems: "flex-start"
+        alignItems: "flex-start",
     },
     dataLabel: {
-        flexDirection: "row"
+        flexDirection: "row",
+        width: "80%",
+        flexWrap: "wrap"
     },
     dataClass: {
         fontWeight: "bold",

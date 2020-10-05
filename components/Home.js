@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
     title: {
         color: "#343a40",
         fontSize: 20,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        textAlign: "center"
     },
     name: {
         color: "#343a40",
