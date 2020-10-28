@@ -1,22 +1,28 @@
 import React from 'react'
-import { Text, View, Button, StyleSheet, TouchableOpacity } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
+import { StackScreenProps } from '@react-navigation/stack';
 
-export default function ({ navigation }) {
-    return (
-        <View style={styles.container}>
-            <View style={styles.heading}>
-                <Text style={styles.title}>React Native Rick and Morty Challenge</Text>
-                <Text style={styles.name}>Juan Thomas Romano</Text>
-            </View>
-            <View style={styles.footer}>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Chars")}>
-                    <Text style={styles.buttonText}>Enter</Text>
-                </TouchableOpacity>
-                <Text style={styles.date}>02/10/20</Text>
-            </View>
+type RootStackParamList = {
+    Home: undefined;
+    Chars: undefined;
+};
+
+type Props = StackScreenProps<RootStackParamList, 'Home'>;
+
+const Home: React.FunctionComponent<Props> = ({ navigation }) => (
+    <View style={styles.container}>
+        <View style={styles.heading}>
+            <Text style={styles.title}>React Native Rick and Morty Challenge</Text>
+            <Text style={styles.name}>Juan Thomas Romano</Text>
         </View>
-    )
-}
+        <View style={styles.footer}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Chars")}>
+                <Text style={styles.buttonText}>Enter</Text>
+            </TouchableOpacity>
+            <Text style={styles.date}>02/10/20</Text>
+        </View>
+    </View>
+)
 
 const styles = StyleSheet.create({
     container: {
@@ -51,7 +57,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         height: 35,
         justifyContent: "center",
-        alignItems:"center",
+        alignItems: "center",
         marginBottom: 20
     },
     buttonText: {
@@ -64,3 +70,5 @@ const styles = StyleSheet.create({
     }
 
 })
+
+export default Home

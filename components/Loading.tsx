@@ -1,13 +1,13 @@
 import React from 'react'
 import { ActivityIndicator, View, StyleSheet } from 'react-native'
 
-export default function Loading() {
-    return (
-        <View style={styles.view}>
-            <ActivityIndicator size="large" color="#007bff"/>
-        </View>
-    )
-}
+const Loading: React.FunctionComponent = () => (
+    <View style={styles.view}>
+        <ActivityIndicator size="large" color="#007bff" />
+    </View>
+)
+
+export default Loading
 
 const styles = StyleSheet.create({
     view: {

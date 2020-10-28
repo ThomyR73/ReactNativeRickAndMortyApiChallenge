@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
-import { View, TextInput, Text, Button, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, TextInput, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
-export default function Search({ setFilter, search }) {
-    const [name, setName] = useState('');
+
+interface Props {
+    setFilter: React.Dispatch<React.SetStateAction<{ name: string; }>>,
+    search: string
+}
+
+const Search: React.FunctionComponent<Props> = ({ setFilter, search }) => {
+    const [name, setName] = useState<string>('');
 
     const onSubmit = () => {
         setFilter({
@@ -17,12 +23,12 @@ export default function Search({ setFilter, search }) {
         })
     }
 
-    const startSearch =  (text) => {
+    const startSearch =  (text: string) => {
         if (text.length >= 3) {
             setName(text)
             onSubmit()
         }
-        if (text.length == 0) {
+        if (text.length === 0) {
             onClear()
             
         }
@@ -96,3 +102,5 @@ const styles = StyleSheet.create({
         fontSize: 13
     }
 })
+
+export default Search

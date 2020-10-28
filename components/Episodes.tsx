@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Nav from './Nav'
 import Search from './Search'
-import EpisodesCard from './cards/episodesCard'
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import Card from './Card'
+import { StyleSheet, View, FlatList } from 'react-native';
 import { gql, useQuery } from '@apollo/client'
 import Loading from './Loading'
 import Error from './Error'
@@ -18,9 +18,6 @@ query episodes($page: Int, $filter: FilterEpisode) {
         characters {
           name
           image
-          type
-          gender
-          species
           id
         }
       }
@@ -34,12 +31,16 @@ query episodes($page: Int, $filter: FilterEpisode) {
   }
 `
 
-export default function Episodes({ navigation }) {
-    const initialFilter = {
+interface Filter {
+    name: string
+}
+
+const Episodes: React.FunctionComponent = () => {
+    const initialFilter: Filter = {
         name: ""
     };
 
-    const [filter, setFilter] = useState({ ...initialFilter })
+    const [filter, setFilter] = useState<Filter>({ ...initialFilter })
 
     const { data, loading, error, fetchMore } = useQuery(GET_EPISODES,
         {
@@ -64,39 +65,33 @@ export default function Episodes({ navigation }) {
             <FlatList
                 data={data.episodes.results}
                 keyExtractor={(item) => item.id}
-                renderItem={({ item }) => <EpisodesCard name={item.name} episode={item.episode} navigation={navigation} date={item.air_date} characters={item.characters} key={`#${item.id}`} />}
+                renderItem={({ item }) => <Card name={item.name} episode={item.episode} cardType="Episode" pressable={true} date={item.air_date} characters={item.characters} key={`#${item.id}`} />}
                 onEndReachedThreshold={0.5}
 
-                onEndReached={data.episodes.info.next ?
+                onEndReached={data.episodes.info.next && (({ distanceFromEnd }) => {
+                    fetchMore({
+                        variables: { page: data.episodes.info.next },
+                        updateQuery: (previousResult: any, { fetchMoreResult }: any) => {
+                            const newEpisodes = fetchMoreResult.episodes.results;
+                            const info = fetchMoreResult.episodes.info;
 
-                    ({ distanceFromEnd }) => {
-                        fetchMore({
-                            variables: { page: data.episodes.info.next },
-                            updateQuery: (previousResult, { fetchMoreResult }) => {
-                                const newEpisodes = fetchMoreResult.episodes.results;
-                                const info = fetchMoreResult.episodes.info;
+                            const episodes = {
 
-                                const episodes = {
+                                __typename: previousResult.episodes.__typename,
+                                info,
+                                results: [...previousResult.episodes.results, ...newEpisodes],
 
-                                    __typename: previousResult.episodes.__typename,
-                                    info,
-                                    results: [...previousResult.episodes.results, ...newEpisodes],
-
-                                }
-
-                                return newEpisodes.length
-                                    ? {
-                                       episodes
-                                    }
-                                    : previousResult;
                             }
-                        })
 
-
-                    } : null
-
+                            return newEpisodes.length
+                                ? {
+                                    episodes
+                                }
+                                : previousResult;
+                        }
+                    })
+                })
                 }
-
             />
         )
 
@@ -104,13 +99,13 @@ export default function Episodes({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <Search setFilter={setFilter} search="episodes"/>
+            <Search setFilter={setFilter} search="episodes" />
             <View style={styles.cardsContainer}>
 
                 {renderContent()}
 
             </View>
-            <Nav navigation={navigation}></Nav>
+            <Nav />
         </View>
     )
 }
@@ -133,3 +128,5 @@ const styles = StyleSheet.create({
         flex: 1
     }
 })
+
+export default Episodes

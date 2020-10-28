@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import { useRoute } from '@react-navigation/native'
- 
-export default function Nav({ navigation }) {
+import { useRoute, useNavigation  } from '@react-navigation/native'
+
+const Nav: FunctionComponent = () => {
+    const navigation = useNavigation()
     const route = useRoute()
     return (
         <View style={styles.nav}>
             <TouchableOpacity onPress={() => navigation.navigate("Chars")}>
                 <View>
-                    <Text style={route.name == "Chars" ? styles.selectedText : styles.text } >Characters</Text>
+                    <Text style={route.name === "Chars" ? styles.selectedText : styles.text} >Characters</Text>
                 </View>
             </TouchableOpacity>
 
@@ -16,15 +17,15 @@ export default function Nav({ navigation }) {
 
             <TouchableOpacity onPress={() => navigation.navigate("Location")}>
                 <View>
-                    <Text style={route.name == "Location" ? styles.selectedText : styles.text }>Locations</Text>
+                    <Text style={route.name === "Location" ? styles.selectedText : styles.text}>Locations</Text>
                 </View>
             </TouchableOpacity>
 
             <View style={styles.div}></View>
-            
+
             <TouchableOpacity onPress={() => navigation.navigate("Episodes")}>
                 <View>
-                    <Text style={route.name == "Episodes" ? styles.selectedText : styles.text }>Episodes</Text>
+                    <Text style={route.name === "Episodes" ? styles.selectedText : styles.text}>Episodes</Text>
                 </View>
             </TouchableOpacity>
         </View>
@@ -53,3 +54,5 @@ const styles = StyleSheet.create({
         width: 1
     }
 })
+
+export default Nav
