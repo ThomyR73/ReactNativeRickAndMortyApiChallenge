@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import Nav from './Nav'
-import Search from './Search'
-import Card from './Card'
-import { StyleSheet, View, FlatList } from 'react-native';
+import Nav from '../Nav/Nav'
+import Search from '../Search/Search'
+import Card from '../Card/Card'
+import { View, FlatList } from 'react-native';
 import { gql, useQuery } from '@apollo/client'
-import Loading from './Loading'
-import Error from './Error'
+import Loading from '../Loading/Loading'
+import Error from '../Error/Error'
+import styles from './CharStyles'
 
 interface filter {
     name:string
@@ -107,24 +108,5 @@ const Chars: React.FunctionComponent = () => {
         </View>
     )
 }
-
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#f8f9fa',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        height: "100%"
-    },
-    cardsContainer: {
-        backgroundColor: '#f8f9fa',
-        alignItems: "stretch",
-        width: "100%",
-        paddingHorizontal: 15,
-        alignSelf: "flex-start",
-        justifyContent: "flex-start",
-        flex: 1
-    }
-})
 
 export default Chars

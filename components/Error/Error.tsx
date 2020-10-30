@@ -1,6 +1,7 @@
 import { ApolloError } from '@apollo/client'
 import React from 'react'
-import { View, Text, StyleSheet} from 'react-native'
+import { View, Text } from 'react-native'
+import styles from './ErrorStyles'
  
 interface Props {
     error: ApolloError
@@ -27,18 +28,5 @@ const Error: React.FunctionComponent<Props> = ({error}) => {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    container:{
-        alignSelf: "center",
-        backgroundColor: "#f8d7da",
-        padding: 15,
-        borderRadius: 5,
-        marginTop: 10
-    },
-    text: {
-        color: "#721c24"
-    }
-})
 
 export default Error

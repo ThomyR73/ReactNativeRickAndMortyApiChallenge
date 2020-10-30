@@ -1,5 +1,6 @@
 import React from 'react'
 import { ActivityIndicator, View, StyleSheet } from 'react-native'
+import styles from './LoadingStyles'
 
 const Loading: React.FunctionComponent = () => (
     <View style={styles.view}>
@@ -8,11 +9,3 @@ const Loading: React.FunctionComponent = () => (
 )
 
 export default Loading
-
-const styles = StyleSheet.create({
-    view: {
-        height: "100%",
-        width: "100%",
-        marginTop: 10
-    }
-})

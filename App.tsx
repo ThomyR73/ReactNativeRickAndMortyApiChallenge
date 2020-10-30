@@ -3,17 +3,17 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Home from './components/Home'
-import Chars from './components/Chars'
-import Location from './components/Location'
-import Episodes from './components/Episodes'
-import Modal from './components/Modal'
+import Home from './components/Home/Home'
+import Chars from './components/Chars/Chars'
+import Location from './components/Location/Location'
+import Episodes from './components/Episodes/Episodes'
+import Modal from './components/Modal/Modal'
 
 
 import { ApolloProvider } from '@apollo/client'
 import client from './config/apollo'
 
-interface Characters {
+interface Character {
   name: string;
   image: string;
   id: string
@@ -31,7 +31,7 @@ type RootStackParamList = {
     gender?: string,
     species?: string,
     dimension?: string,
-    characters?: Array<Characters>,
+    characters?: Array<Character>,
     episode?: string,
     date?: string,
     modalType: string
