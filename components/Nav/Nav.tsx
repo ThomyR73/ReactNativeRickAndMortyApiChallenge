@@ -8,17 +8,17 @@ const Nav: FunctionComponent = () => {
     const route = useRoute()
     return (
         <View style={styles.nav}>
-            <TouchableOpacity onPress={() => navigation.navigate("Chars")}>
+            <TouchableOpacity onPress={() => navigation.navigate("Characters")}>
                 <View>
-                    <Text style={route.name === "Chars" ? styles.selectedText : styles.text} >Characters</Text>
+                    <Text style={route.name === "Characters" ? styles.selectedText : styles.text} >Characters</Text>
                 </View>
             </TouchableOpacity>
 
             <View style={styles.div}></View>
 
-            <TouchableOpacity onPress={() => navigation.navigate("Location")}>
+            <TouchableOpacity onPress={() => navigation.navigate("Locations")}>
                 <View>
-                    <Text style={route.name === "Location" ? styles.selectedText : styles.text}>Locations</Text>
+                    <Text style={route.name === "Locations" ? styles.selectedText : styles.text}>Locations</Text>
                 </View>
             </TouchableOpacity>
 

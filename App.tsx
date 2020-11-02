@@ -4,9 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from './components/Home/Home'
-import Chars from './components/Chars/Chars'
-import Location from './components/Location/Location'
-import Episodes from './components/Episodes/Episodes'
+import CardsList from './components/CardsList/CardsList'
 import Modal from './components/Modal/Modal'
 
 
@@ -21,8 +19,8 @@ interface Character {
 
 type RootStackParamList = {
   Home: undefined;
-  Chars: undefined;
-  Location: undefined;
+  Characters: undefined;
+  Locations: undefined;
   Episodes: undefined;
   Modal: {
     name: string;
@@ -46,9 +44,9 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
-          <Stack.Screen name="Chars" component={Chars} options={{ headerShown: false }} />
-          <Stack.Screen name="Location" component={Location} options={{ headerShown: false }} />
-          <Stack.Screen name="Episodes" component={Episodes} options={{ headerShown: false }} />
+          <Stack.Screen name="Characters" component={CardsList} options={{ headerShown: false }} />
+          <Stack.Screen name="Locations" component={CardsList} options={{ headerShown: false }} />
+          <Stack.Screen name="Episodes" component={CardsList} options={{ headerShown: false }} />
           <Stack.Screen name="Modal" component={Modal} options={{ headerShown: true, title: "" }} />
 
         </Stack.Navigator>

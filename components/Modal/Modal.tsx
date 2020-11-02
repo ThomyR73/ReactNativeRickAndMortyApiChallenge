@@ -12,18 +12,18 @@ interface Character {
 
 type RootStackParamList = {
     Modal: {
-      name: string;
-      img?: string,
-      type?: string,
-      gender?: string,
-      species?: string,
-      dimension?: string,
-      characters?: Array<Character>,
-      episode?: string,
-      date?: string,
-      modalType: string
+        name: string;
+        img?: string,
+        type?: string,
+        gender?: string,
+        species?: string,
+        dimension?: string,
+        characters?: Array<Character>,
+        episode?: string,
+        date?: string,
+        modalType: string
     }
-  };
+};
 
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'Modal'>;
 
@@ -36,16 +36,19 @@ const Modal: React.FunctionComponent<Props> = ({ route }) => {
     const { name, img, type, gender, species, dimension, characters, episode, date, modalType } = route.params
 
     const CheckChars: React.FunctionComponent = () => {
-        if (!characters) return(null)
+        if (!characters) return (null)
         const { name } = characters[0]
         return (!!name ? (
             <View style={styles.scroll}>
                 <Text style={styles.dataClass}>Characters</Text>
-                {characters.slice(0, 5).map((char) => { return <Card name={char.name} img={char.image} pressable={false} cardType="Character" key={`#${char.id}`} /> })}
+                {characters.slice(0, 5).map((character) => <Card name={character.name}
+                    img={character.image} cardType="Character"
+                    key={character.id} />)}
             </View>
         ) : (
                 <Text style={styles.error}>
-                    There are no {modalType === "Episode" ? "characters" : "residents"} found for this {modalType === "Episode" ? "episode" : "location"}
+                    There are no {modalType === "Episode" ? "characters" : "residents"}
+                     found for this {modalType === "Episode" ? "episode" : "location"}
                 </Text>
             ))
 

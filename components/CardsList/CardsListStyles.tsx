@@ -4,7 +4,6 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#f8f9fa',
         alignItems: 'center',
-        justifyContent: 'flex-start',
         height: "100%"
     },
     cardsContainer: {
@@ -12,8 +11,6 @@ const styles = StyleSheet.create({
         alignItems: "stretch",
         width: "100%",
         paddingHorizontal: 15,
-        alignSelf: "flex-start",
-        justifyContent: "flex-start",
         flex: 1
     }
 })

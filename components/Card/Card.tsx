@@ -19,7 +19,7 @@ interface Props {
     characters?: Array<Character>,
     episode?: string,
     date?: string,
-    pressable: Boolean,
+    pressable?: Boolean,
     cardType: string
 }
 
@@ -39,7 +39,7 @@ const Card: React.FunctionComponent<Props> = ({ name, img, type, gender, species
         return undefined
     }
     return (
-        <TouchableOpacity onPress={()=>onPressAction()} >
+        <TouchableOpacity onPress={() => onPressAction()} >
             <View style={cardType == "Character" ? styles.charContainer : styles.container}>
                 {
                     img && (

@@ -5,7 +5,10 @@ import styles from './HomeStyles'
 
 type RootStackParamList = {
     Home: undefined;
-    Chars: undefined;
+    Characters: undefined;
+    CardsList: {
+        CardsType: string,
+    };
 };
 
 type Props = StackScreenProps<RootStackParamList, 'Home'>;
@@ -17,7 +20,7 @@ const Home: React.FunctionComponent<Props> = ({ navigation }) => (
             <Text style={styles.name}>Juan Thomas Romano</Text>
         </View>
         <View style={styles.footer}>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Chars")}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Characters")}>
                 <Text style={styles.buttonText}>Enter</Text>
             </TouchableOpacity>
             <Text style={styles.date}>02/10/20</Text>
